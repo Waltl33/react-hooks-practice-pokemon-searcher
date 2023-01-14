@@ -1,7 +1,18 @@
-import React from "react";
+import React,{useState} from "react";
 import { Card } from "semantic-ui-react";
+import { useEffect } from "react";
 
 function PokemonCard() {
+  const [pokemons, setPokemons] = useState([])
+
+  useEffect(() => {
+
+    fetch ("http://localhost:3001/pokemon")
+      .then(resp => resp.json())
+      .then(console.log)
+  }, [])
+
+
   return (
     <Card>
       <div>
