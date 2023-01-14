@@ -3,8 +3,18 @@ import PokemonCollection from "./PokemonCollection";
 import PokemonForm from "./PokemonForm";
 import Search from "./Search";
 import { Container } from "semantic-ui-react";
+import {useEffect, useState } from "react";
 
 function PokemonPage() {
+const [pokemons, setPokemons] = useState([])
+
+  useEffect(() => {
+    fetch ("http://localhost:3001/pokemon")
+      .then(resp => resp.json())
+      .then(setPokemons)
+
+  }, [])
+
   return (
     <Container>
       <h1>Pokemon Searcher</h1>
@@ -13,7 +23,8 @@ function PokemonPage() {
       <br />
       <Search />
       <br />
-      <PokemonCollection />
+      <PokemonCollection
+      pokemons = {pokemons} />
     </Container>
   );
 }
